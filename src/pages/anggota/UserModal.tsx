@@ -14,7 +14,6 @@ const userSchema = z.object({
   password: z.string().optional(),
   division: z.string().min(1, 'Bidang wajib dipilih'),
   position: z.string().min(1, 'Jabatan wajib dipilih'),
-  status: z.enum(['Active', 'Inactive', 'Alumni']),
 });
 
 type UserForm = z.infer<typeof userSchema>;
@@ -57,7 +56,6 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
       password: '',
       division: '',
       position: '',
-      status: 'Active',
     }
   });
 
@@ -74,7 +72,6 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
         name: user.name,
         division: user.division || '',
         position: user.position || '',
-        status: user.status,
         password: ''
       });
     } else if (!user && isOpen) {
@@ -85,7 +82,6 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
         password: '',
         division: '',
         position: '',
-        status: 'Active',
       });
     }
   }, [user, isOpen, reset]);
@@ -195,11 +191,11 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Bidang</label>
               <select 
-                {...register('division')} 
-                onChange={(e) => {
-                  register('division').onChange(e);
-                  setValue('position', ''); // Reset position when division changes
-                }}
+                {...register('division', {
+                  onChange: () => {
+                    setValue('position', '');
+                  }
+                })} 
                 className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-ksr-primary outline-none"
               >
                 <option value="" disabled>Pilih Bidang...</option>
@@ -240,17 +236,6 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
                 placeholder="***"
               />
               {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Status</label>
-              <select 
-                {...register('status')} 
-                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-ksr-primary outline-none"
-              >
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                <option value="Alumni">Alumni</option>
-              </select>
             </div>
           </div>
 
