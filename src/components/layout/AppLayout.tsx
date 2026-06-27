@@ -29,7 +29,7 @@ const getPageTitle = (pathname: string) => {
 export const AppLayout = () => {
   const { isAuthenticated, user } = useAuthStore();
   const location = useLocation();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
