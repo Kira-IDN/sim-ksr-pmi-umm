@@ -122,3 +122,9 @@
     border-color: #475569 !important;
   }
 }
+
+/* Hide default browser password reveal icons */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
