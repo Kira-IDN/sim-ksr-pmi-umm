@@ -1,0 +1,390 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// 1. RBAC & PERMISSIONS (FLEXIBLE MODEL)
+// ==========================================
+
+model Role {
+  id              String           @id @default(uuid())
+  name            String           @unique
+  createdAt       DateTime         @default(now()) @map("created_at")
+  
+  users           User[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id              String           @id @default(uuid())
+  module          String
+  action          String
+  createdAt       DateTime         @default(now()) @map("created_at")
+  
+  rolePermissions RolePermission[]
+
+  @@unique([module, action])
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String     @map("role_id")
+  permissionId String     @map("permission_id")
+  
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+// ==========================================
+// 2. CORE USERS & ORGANIZATION
+// ==========================================
+
+model User {
+  id            String    @id @default(uuid())
+  nia           String    @unique
+  name          String
+  passwordHash  String    @map("password_hash")
+  roleId        String    @map("role_id")
+  division      String?
+  generation    Int       @default(1)
+  status        String    @default("Active")
+  
+  // Standard Soft Delete
+  isDeleted     Boolean   @default(false) @map("is_deleted")
+  deletedAt     DateTime? @map("deleted_at")
+  deletedBy     String?   @map("deleted_by")
+
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  role          Role      @relation(fields: [roleId], references: [id])
+
+  // Relations
+  refreshTokens        RefreshToken[]
+  orgStructures        OrgStructure[]
+  auditLogs            AuditLog[]
+  notifications        Notification[]
+  activitiesCreated    Activity[] @relation("ActivityCreator")
+  activityParticipants ActivityParticipant[]
+  attendances          Attendance[]
+  borrowRequests       BorrowRequest[] @relation("BorrowerInternal")
+  patientsHandled      Patient[]
+  complaintsSubmitted  Complaint[] @relation("ComplaintSubmitter")
+  complaintsHandled    Complaint[] @relation("ComplaintHandler")
+  financialRecords     FinancialRecord[]
+  approvalLogs         ApprovalLog[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  token       String   @unique
+  deviceInfo  String?  @map("device_info")
+  ipAddress   String?  @map("ip_address")
+  expiresAt   DateTime @map("expires_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+model OrgStructure {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  position    String
+  periodStart DateTime @map("period_start")
+  periodEnd   DateTime @map("period_end")
+
+  // Soft Delete
+  isDeleted   Boolean   @default(false) @map("is_deleted")
+  deletedAt   DateTime? @map("deleted_at")
+  deletedBy   String?   @map("deleted_by")
+
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("org_structures")
+}
+
+model Settings {
+  id    String @id @default(uuid())
+  key   String @unique
+  value String 
+
+  @@map("settings")
+}
+
+// ==========================================
+// 3. ENTERPRISE SYSTEM MODULES
+// ==========================================
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  module      String
+  action      String
+  targetTable String   @map("target_table")
+  targetId    String   @map("target_id")
+  oldValue    String?  @map("old_value") 
+  newValue    String?  @map("new_value") 
+  ipAddress   String?  @map("ip_address")
+  userAgent   String?  @map("user_agent")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+model Attachment {
+  id         String   @id @default(uuid())
+  targetId   String   @map("target_id")
+  targetType String   @map("target_type") // Complaint, Activity, Patient
+  fileUrl    String   @map("file_url")
+  fileType   String   @map("file_type")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  // Soft Delete
+  isDeleted  Boolean   @default(false) @map("is_deleted")
+  deletedAt  DateTime? @map("deleted_at")
+  deletedBy  String?   @map("deleted_by")
+
+  @@map("attachments")
+}
+
+model Complaint {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  category    String
+  title       String
+  description String
+  status      String   @default("Open") // Open, In Review, Resolved, Closed
+  handledBy   String?  @map("handled_by")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Soft Delete
+  isDeleted   Boolean   @default(false) @map("is_deleted")
+  deletedAt   DateTime? @map("deleted_at")
+  deletedBy   String?   @map("deleted_by")
+
+  submitter User  @relation("ComplaintSubmitter", fields: [userId], references: [id])
+  handler   User? @relation("ComplaintHandler", fields: [handledBy], references: [id])
+
+  @@map("complaints")
+}
+
+// ==========================================
+// 4. ACTIVITY & ATTENDANCE
+// ==========================================
+
+model Activity {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  startDate   DateTime @map("start_date")
+  endDate     DateTime @map("end_date")
+  status      String   @default("Pending") // Pending, Approved, Rejected, Completed
+  createdBy   String   @map("created_by")
+
+  // Soft Delete
+  isDeleted   Boolean   @default(false) @map("is_deleted")
+  deletedAt   DateTime? @map("deleted_at")
+  deletedBy   String?   @map("deleted_by")
+
+  creator      User                  @relation("ActivityCreator", fields: [createdBy], references: [id])
+  participants ActivityParticipant[]
+  attendances  Attendance[]
+  
+  // Because approval target is polymorphic we do not enforce strict FK here to avoid cyclic/polymorphic issues, but documented in RTF.
+
+  @@map("activities")
+}
+
+model ActivityParticipant {
+  activityId     String @map("activity_id")
+  userId         String @map("user_id")
+  roleInActivity String @map("role_in_activity")
+
+  activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([activityId, userId])
+  @@map("activity_participants")
+}
+
+model Attendance {
+  id             String    @id @default(uuid())
+  activityId     String    @map("activity_id")
+  userId         String    @map("user_id")
+  attendanceType String    @map("attendance_type") 
+  checkIn        DateTime? @map("check_in")
+  checkOut       DateTime? @map("check_out")
+  status         String    // Present, Late, Sick, Excused, Absent
+
+  activity Activity @relation(fields: [activityId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@map("attendances")
+}
+
+// ==========================================
+// 5. INVENTORY & FIELD OPERATIONS
+// ==========================================
+
+model InventoryCategory {
+  id          String @id @default(uuid())
+  name        String @unique
+  description String?
+
+  items InventoryItem[]
+
+  @@map("inventory_categories")
+}
+
+model InventoryItem {
+  id         String @id @default(uuid())
+  categoryId String @map("category_id")
+  name       String
+  stock      Int    @default(0)
+  condition  String // Baik, Rusak Ringan, Rusak Berat
+
+  // Soft Delete
+  isDeleted  Boolean   @default(false) @map("is_deleted")
+  deletedAt  DateTime? @map("deleted_at")
+  deletedBy  String?   @map("deleted_by")
+
+  category  InventoryCategory    @relation(fields: [categoryId], references: [id])
+  borrowReq BorrowRequest[]
+  movements InventoryMovement[]
+
+  @@map("inventory_items")
+}
+
+model InventoryMovement {
+  id        String   @id @default(uuid())
+  itemId    String   @map("item_id")
+  type      String   // In, Out, Adjustment
+  quantity  Int
+  notes     String?
+  createdBy String   @map("created_by") 
+  createdAt DateTime @default(now()) @map("created_at")
+
+  item InventoryItem @relation(fields: [itemId], references: [id])
+
+  @@map("inventory_movements")
+}
+
+model BorrowRequest {
+  id             String    @id @default(uuid())
+  borrowerName   String    @map("borrower_name")
+  internalUserId String?   @map("internal_user_id") 
+  itemId         String    @map("item_id")
+  quantity       Int
+  status         String    @default("Pending") // Pending, Approved, Returned
+  requestedAt    DateTime  @default(now()) @map("requested_at")
+  returnedAt     DateTime? @map("returned_at")
+
+  // Soft Delete
+  isDeleted      Boolean   @default(false) @map("is_deleted")
+  deletedAt      DateTime? @map("deleted_at")
+  deletedBy      String?   @map("deleted_by")
+
+  item         InventoryItem @relation(fields: [itemId], references: [id])
+  internalUser User?         @relation("BorrowerInternal", fields: [internalUserId], references: [id])
+
+  @@map("borrow_requests")
+}
+
+model Patient {
+  id                  String   @id @default(uuid())
+  name                String
+  incidentDescription String   @map("incident_description")
+  handledBy           String   @map("handled_by")
+  actionTaken         String   @map("action_taken")
+  date                DateTime
+
+  // Soft Delete
+  isDeleted           Boolean   @default(false) @map("is_deleted")
+  deletedAt           DateTime? @map("deleted_at")
+  deletedBy           String?   @map("deleted_by")
+
+  handler             User     @relation(fields: [handledBy], references: [id])
+
+  @@map("patients")
+}
+
+// ==========================================
+// 6. FINANCE & APPROVALS
+// ==========================================
+
+model FinancialCategory {
+  id   String @id @default(uuid())
+  name String @unique
+  type String // Income, Expense
+
+  records FinancialRecord[]
+
+  @@map("financial_categories")
+}
+
+model FinancialRecord {
+  id         String   @id @default(uuid())
+  title      String
+  amount     Decimal  @db.Decimal(15, 2)
+  type       String   // Income, Expense
+  categoryId String   @map("category_id")
+  createdBy  String   @map("created_by")
+  status     String   @default("Pending") // Pending, Approved, Rejected
+  date       DateTime
+
+  // Soft Delete
+  isDeleted  Boolean   @default(false) @map("is_deleted")
+  deletedAt  DateTime? @map("deleted_at")
+  deletedBy  String?   @map("deleted_by")
+
+  category     FinancialCategory @relation(fields: [categoryId], references: [id])
+  creator      User              @relation(fields: [createdBy], references: [id])
+
+  @@map("financial_records")
+}
+
+model ApprovalLog {
+  id          String   @id @default(uuid())
+  targetId    String   @map("target_id")
+  targetType  String   @map("target_type") // Activity / FinancialRecord
+  approverId  String   @map("approver_id")
+  status      String   // Approved, Rejected
+  notes       String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  approver       User             @relation(fields: [approverId], references: [id])
+
+  @@map("approval_logs")
+}
