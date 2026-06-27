@@ -135,10 +135,13 @@ async function main() {
     where: { nia: 'ADMIN001' },
     update: {},
     create: {
+      loginId: 'ADMIN001',
       nia: 'ADMIN001',
       name: 'Administrator',
       passwordHash: adminPassword,
       roleId: createdRoles['Admin Sistem'],
+      division: 'Administrasi Sistem',
+      position: 'Admin Sistem'
     }
   });
 

@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 interface Column<T> {
   header: string;
   accessorKey?: keyof T;
-  cell?: (item: T) => React.ReactNode;
+  cell?: (item: T, index: number) => React.ReactNode;
   className?: string;
 }
 
@@ -36,11 +36,11 @@ export function DataTable<T>({ data, columns, keyExtractor, className }: DataTab
               </td>
             </tr>
           ) : (
-            data.map((item) => (
+            data.map((item, index) => (
               <tr key={keyExtractor(item)} className="border-t border-gray-100 hover:bg-gray-50 transition-colors">
                 {columns.map((col) => (
                   <td key={col.header} className={`py-4 px-6 text-sm ${col.className || 'text-gray-700'}`}>
-                    {col.cell ? col.cell(item) : (item as any)[col.accessorKey as string]}
+                    {col.cell ? col.cell(item, index) : (item as any)[col.accessorKey as string]}
                   </td>
                 ))}
               </tr>

@@ -12,7 +12,12 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/utils/api';
 import toast from 'react-hot-toast';
 
+import { useAuthStore } from '@/store/authStore';
+
 export const DataAnggota = () => {
+  const { user } = useAuthStore();
+  const isAdmin = user?.roleName === 'Admin Sistem';
+
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -89,12 +94,17 @@ export const DataAnggota = () => {
           data={filteredData}
           keyExtractor={(item) => item.id}
           columns={[
-            { header: 'NIA', accessorKey: 'nia' },
+            ...(isAdmin ? [{ header: 'ID', accessorKey: 'loginId' }] : [{ 
+              header: 'No', 
+              cell: (_: any, index: number) => <span className="text-gray-500">{index + 1}</span>
+            }]),
             { 
               header: 'Nama Lengkap', 
               cell: (item: any) => <span className="font-bold text-gray-800">{item.name}</span> 
             },
-            { header: 'Angkatan', accessorKey: 'generation' },
+            { header: 'NIA', accessorKey: 'nia' },
+            { header: 'Jabatan', accessorKey: 'position' },
+            { header: 'Bidang', accessorKey: 'division' },
             { 
               header: 'Status', 
               cell: (item: any) => {
@@ -106,7 +116,7 @@ export const DataAnggota = () => {
                 return <StatusBadge status={statusMap[item.status] || 'default'} label={item.status} />;
               }
             },
-            {
+            ...(isAdmin ? [{
               header: 'Aksi',
               cell: (item: any) => (
                 <div className="flex gap-2">
@@ -124,7 +134,7 @@ export const DataAnggota = () => {
                   </button>
                 </div>
               )
-            }
+            }] : [])
           ]}
         />
       </div>

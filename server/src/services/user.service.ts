@@ -8,10 +8,11 @@ export class UserService {
       where: { isDeleted: false },
       select: {
         id: true,
+        loginId: true,
         nia: true,
         name: true,
         division: true,
-        generation: true,
+        position: true,
         status: true,
         roleId: true,
         role: { select: { name: true } },
@@ -20,17 +21,25 @@ export class UserService {
   }
 
   static async createUser(data: any, adminId: string, reqIp?: string, reqUa?: string) {
+    if (await prisma.user.findUnique({ where: { loginId: data.loginId } })) {
+      throw { status: 400, message: 'ID Login sudah digunakan' };
+    }
+    if (await prisma.user.findUnique({ where: { nia: data.nia } })) {
+      throw { status: 400, message: 'NIA sudah digunakan' };
+    }
+
     const passwordHash = await bcrypt.hash(data.password, 10);
 
     return prisma.$transaction(async (tx) => {
       const newUser = await tx.user.create({
         data: {
+          loginId: data.loginId,
           nia: data.nia,
           name: data.name,
           passwordHash,
           roleId: data.roleId,
           division: data.division,
-          generation: data.generation,
+          position: data.position,
           status: data.status,
         }
       });
@@ -60,14 +69,26 @@ export class UserService {
         passwordHash = await bcrypt.hash(data.password, 10);
       }
 
+      if (data.loginId && data.loginId !== existing.loginId) {
+        if (await tx.user.findUnique({ where: { loginId: data.loginId } })) {
+          throw { status: 400, message: 'ID Login sudah digunakan' };
+        }
+      }
+      if (data.nia && data.nia !== existing.nia) {
+        if (await tx.user.findUnique({ where: { nia: data.nia } })) {
+          throw { status: 400, message: 'NIA sudah digunakan' };
+        }
+      }
+
       const updated = await tx.user.update({
         where: { id },
         data: {
+          loginId: data.loginId || existing.loginId,
           nia: data.nia || existing.nia,
           name: data.name || existing.name,
           roleId: data.roleId || existing.roleId,
           division: data.division || existing.division,
-          generation: data.generation || existing.generation,
+          position: data.position || existing.position,
           status: data.status || existing.status,
           passwordHash,
         }

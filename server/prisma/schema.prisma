@@ -51,12 +51,13 @@ model RolePermission {
 
 model User {
   id            String    @id @default(uuid())
+  loginId       String    @unique @map("login_id")
   nia           String    @unique
   name          String
   passwordHash  String    @map("password_hash")
   roleId        String    @map("role_id")
   division      String?
-  generation    Int       @default(1)
+  position      String?
   status        String    @default("Active")
   
   // Standard Soft Delete

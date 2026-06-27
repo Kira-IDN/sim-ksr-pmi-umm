@@ -4,22 +4,24 @@ import { z } from 'zod';
 import { AuthRequest } from '../middlewares/auth.middleware';
 
 const createUserSchema = z.object({
+  loginId: z.string().min(1),
   nia: z.string().min(1),
   name: z.string().min(1),
   password: z.string().min(6),
   roleId: z.string().uuid(),
   division: z.string().optional(),
-  generation: z.number().int().optional(),
+  position: z.string().optional(),
   status: z.string().optional(),
 });
 
 const updateUserSchema = z.object({
+  loginId: z.string().optional(),
   nia: z.string().optional(),
   name: z.string().optional(),
   password: z.string().min(6).optional(),
   roleId: z.string().uuid().optional(),
   division: z.string().optional(),
-  generation: z.number().int().optional(),
+  position: z.string().optional(),
   status: z.string().optional(),
 });
 
