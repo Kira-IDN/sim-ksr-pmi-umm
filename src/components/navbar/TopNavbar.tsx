@@ -76,7 +76,7 @@ export const TopNavbar = ({ title = 'Dashboard', toggleSidebar }: TopNavbarProps
   };
 
   return (
-    <header className="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-8 sticky top-0 z-10">
+    <header className="h-20 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-10">
       <div className="flex items-center gap-4">
         <button 
           onClick={toggleSidebar}
@@ -85,8 +85,8 @@ export const TopNavbar = ({ title = 'Dashboard', toggleSidebar }: TopNavbarProps
           <Menu className="w-5 h-5" />
         </button>
         <div>
-          <h2 className="text-xl font-bold text-gray-800">{title}</h2>
-          <p className="text-xs text-gray-400">Sistem Informasi KSR PMI UMM</p>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">{title}</h2>
+          <p className="text-xs text-gray-400 dark:text-gray-500">Sistem Informasi KSR PMI UMM</p>
         </div>
       </div>
 
@@ -173,40 +173,40 @@ export const TopNavbar = ({ title = 'Dashboard', toggleSidebar }: TopNavbarProps
           )}
         </div>
         
-        <div className="relative border-l border-gray-100 pl-4" ref={profileRef}>
+        <div className="relative border-l border-gray-100 dark:border-slate-800 pl-4" ref={profileRef}>
           <div 
-            className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-xl transition-colors"
+            className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 p-2 rounded-xl transition-colors"
             onClick={() => setShowProfileMenu(!showProfileMenu)}
           >
             <div className="w-10 h-10 rounded-full bg-ksr-primary text-white flex items-center justify-center font-bold shadow-sm">
               {user?.name?.charAt(0).toUpperCase() || 'U'}
             </div>
             <div className="hidden md:block">
-              <p className="text-sm font-semibold text-gray-800">{user?.name}</p>
-              <p className="text-xs text-gray-500">{user?.roleName}</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{user?.name}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{user?.roleName}</p>
             </div>
           </div>
           
           {showProfileMenu && (
-            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2">
-              <div className="p-4 border-b border-gray-100">
-                <p className="text-sm font-bold text-gray-800 truncate">{user?.name}</p>
-                <p className="text-xs text-gray-500 truncate">{user?.nia}</p>
+            <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden animate-in fade-in slide-in-from-top-2">
+              <div className="p-4 border-b border-gray-100 dark:border-slate-700">
+                <p className="text-sm font-bold text-gray-800 dark:text-gray-100 truncate">{user?.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user?.nia}</p>
               </div>
               <div className="py-2">
-                <button onClick={() => { setShowProfileMenu(false); navigate('/profil'); }} className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3">
+                <button onClick={() => { setShowProfileMenu(false); navigate('/profil'); }} className="w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700/50 flex items-center gap-3">
                   <UserIcon className="w-4 h-4 text-gray-400" />
                   Profil Saya
                 </button>
                 {hasModuleAccess((user?.roleName as any) || null, 'Pengaturan') && (
-                  <button onClick={() => { setShowProfileMenu(false); navigate('/pengaturan'); }} className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3">
+                  <button onClick={() => { setShowProfileMenu(false); navigate('/pengaturan'); }} className="w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700/50 flex items-center gap-3">
                     <Settings className="w-4 h-4 text-gray-400" />
                     Pengaturan
                   </button>
                 )}
               </div>
-              <div className="border-t border-gray-100 py-2">
-                <button onClick={handleLogout} className="w-full px-4 py-2 text-left text-sm text-ksr-primary hover:bg-red-50 flex items-center gap-3 font-medium">
+              <div className="border-t border-gray-100 dark:border-slate-700 py-2">
+                <button onClick={handleLogout} className="w-full px-4 py-2 text-left text-sm text-ksr-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-slate-700/50 flex items-center gap-3 font-medium">
                   <LogOut className="w-4 h-4" />
                   Keluar
                 </button>

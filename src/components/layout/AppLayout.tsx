@@ -43,7 +43,7 @@ export const AppLayout = () => {
   const title = getPageTitle(location.pathname);
 
   return (
-    <div className="flex h-screen bg-ksr-background font-sans overflow-hidden">
+    <div className="flex h-screen bg-ksr-background dark:bg-slate-950 font-sans overflow-hidden">
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden transition-all duration-300 ease-in-out">
         <TopNavbar title={title} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />

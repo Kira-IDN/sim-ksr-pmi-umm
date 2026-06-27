@@ -43,7 +43,7 @@ const SidebarItem = ({ to, icon: Icon, label, module }: SidebarItemProps) => {
           'flex items-center gap-3 px-4 py-2.5 rounded-2xl my-0.5 mx-2 transition-all duration-150 text-sm',
           isActive
             ? 'bg-[#B71C1C] text-white font-semibold shadow-sm'
-            : 'text-gray-500 hover:bg-red-50 hover:text-[#B71C1C]'
+            : 'text-gray-500 hover:bg-red-50 hover:text-[#B71C1C] dark:text-gray-400 dark:hover:bg-slate-800/50 dark:hover:text-red-400'
         )
       }
     >
@@ -54,7 +54,7 @@ const SidebarItem = ({ to, icon: Icon, label, module }: SidebarItemProps) => {
 };
 
 const SectionLabel = ({ label }: { label: string }) => (
-  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 mt-5 px-6">
+  <h2 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 mt-5 px-6">
     {label}
   </h2>
 );
@@ -88,15 +88,15 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         "fixed md:static inset-y-0 left-0 z-50 h-screen overflow-hidden flex-shrink-0 transition-all duration-300 ease-in-out",
         isOpen ? "translate-x-0 w-60" : "-translate-x-full w-60 md:translate-x-0 md:w-0"
       )}>
-        <aside className="w-60 h-full bg-white border-r border-gray-100 flex flex-col">
+        <aside className="w-60 h-full bg-white dark:bg-slate-900 border-r border-gray-100 dark:border-slate-800 flex flex-col">
           {/* Logo */}
-          <div className="flex items-center gap-3 px-5 h-20 border-b border-gray-100 shrink-0">
+          <div className="flex items-center gap-3 px-5 h-20 border-b border-gray-100 dark:border-slate-800 shrink-0">
             <div className="bg-[#B71C1C] text-white p-1.5 rounded-xl">
               <Heart className="w-5 h-5 fill-white" />
             </div>
             <div>
-              <h1 className="font-bold text-gray-800 text-sm leading-tight">UMM</h1>
-              <p className="text-[10px] text-gray-500 leading-tight">KSR PMI</p>
+              <h1 className="font-bold text-gray-800 dark:text-gray-100 text-sm leading-tight">UMM</h1>
+              <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">KSR PMI</p>
             </div>
           </div>
 
@@ -130,14 +130,14 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           </nav>
 
           {/* Footer — Profile, Settings, Logout */}
-          <div className="border-t border-gray-100 py-3 shrink-0">
+          <div className="border-t border-gray-100 dark:border-slate-800 py-3 shrink-0">
             <SidebarItem to="/profil"      icon={User}     label="Profil Saya" module="Profil Saya" />
             <SidebarItem to="/pengaturan"  icon={Settings} label="Pengaturan"  module="Pengaturan" />
 
             {user?.roleName !== 'Tamu' && (
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-2xl w-[calc(100%-16px)] text-left text-[#B71C1C] hover:bg-red-50 transition-all duration-150 text-sm font-medium mt-0.5"
+                className="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-2xl w-[calc(100%-16px)] text-left text-[#B71C1C] hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-800/50 transition-all duration-150 text-sm font-medium mt-0.5"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Keluar</span>
