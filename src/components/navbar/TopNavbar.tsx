@@ -49,7 +49,7 @@ export const TopNavbar = ({ title = 'Dashboard' }: TopNavbarProps) => {
   
   const unreadCount = notifications.filter((n: any) => !n.read).length;
   
-  const { darkMode, toggleDarkMode } = useThemeStore();
+  const { toggleDarkMode } = useThemeStore();
   
   const profileRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
