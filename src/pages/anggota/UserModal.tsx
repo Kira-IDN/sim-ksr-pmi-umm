@@ -55,7 +55,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
 
   const schema = useMemo(() => getValidationSchema(isEditing), [isEditing]);
 
-  const { register, handleSubmit, formState: { errors }, reset, control, setValue } = useForm<any>({
+  const { register, handleSubmit, formState: { errors }, reset, control, setValue, trigger } = useForm<any>({
     resolver: zodResolver(schema),
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -225,7 +225,9 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Jabatan</label>
               <select 
-                {...register('position')} 
+                {...register('position', {
+                  onChange: () => trigger('position')
+                })} 
                 disabled={!selectedDivision}
                 className={`${getInputClass(!!errors.position)} disabled:bg-gray-100 disabled:text-gray-500`}
               >
@@ -253,7 +255,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
                   type={showPassword ? "text" : "password"}
                   {...register('password')} 
                   className={getInputClass(!!errors.password)}
-                  placeholder={isEditing ? "Kosongkan jika tidak mengubah" : "***"}
+                  placeholder={isEditing ? "Masukkan password baru" : "***"}
                 />
                 <button
                   type="button"
@@ -263,6 +265,11 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
+              {isEditing && !errors.password && (
+                 <p className="text-gray-500 text-xs mt-1">
+                   Kosongkan jika tidak ingin mengubah password.
+                 </p>
+              )}
               {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message as string}</p>}
             </div>
           </div>
