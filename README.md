@@ -1,78 +1,101 @@
 <div align="center">
-  <img src="./docs/assets/logo.png" alt="SIM KSR PMI UMM Logo" width="200" />
+  <img src="./docs/assets/logo.png" alt="Logo KSR PMI UMM" width="280" />
   
   <br />
   <br />
 
-  [![CI Pipeline](https://github.com/Kira-IDN/sim-ksr-pmi-umm/actions/workflows/ci.yml/badge.svg)](https://github.com/Kira-IDN/sim-ksr-pmi-umm/actions/workflows/ci.yml)
-  [![React](https://img.shields.io/badge/React-18-blue.svg?logo=react)](https://reactjs.org/)
-  [![Vite](https://img.shields.io/badge/Vite-5-purple.svg?logo=vite)](https://vitejs.dev/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
-  [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg?logo=node.js)](https://nodejs.org/)
-  [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748.svg?logo=prisma)](https://prisma.io/)
-  [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](#-lisensi)
+  <h1>Sistem Informasi Manajemen</h1>
+  <p><b>Platform Terpadu Administrasi, Pendataan, dan Operasional Lapangan <br/> Korps Sukarela PMI Unit Universitas Muhammadiyah Malang</b></p>
+  
+  <br />
 
-  <h3>Sistem Informasi Manajemen - KSR PMI UMM</h3>
-  <p>Platform terpadu untuk memodernisasi administrasi, pendataan, dan operasional lapangan Korps Sukarela PMI Unit Universitas Muhammadiyah Malang.</p>
+  [![React](https://img.shields.io/badge/React-18-087EA4?logo=react&logoColor=white)](https://reactjs.org/)
+  [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+  [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)](https://prisma.io/)
+  <br />
+  [![CI Pipeline](https://github.com/Kira-IDN/sim-ksr-pmi-umm/actions/workflows/ci.yml/badge.svg)](https://github.com/Kira-IDN/sim-ksr-pmi-umm/actions/workflows/ci.yml)
+  [![Release](https://img.shields.io/github/v/release/Kira-IDN/sim-ksr-pmi-umm?color=success&label=Release)](https://github.com/Kira-IDN/sim-ksr-pmi-umm/releases)
+  [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](#-license)
+
 </div>
 
 ---
 
-## 📖 Tentang Proyek
+## 📖 Project Overview
 
-Proyek ini dibangun untuk menggantikan sistem administrasi manual KSR PMI UMM dengan platform digital yang aman, efisien, dan berskala besar. Sistem ini mencakup pengelolaan data keanggotaan, rekapitulasi presensi, pengarsipan dokumen digital, manajemen inventaris, dan alur persetujuan (approval) berjenjang.
+Proyek ini dibangun untuk menggantikan sistem administrasi manual KSR PMI UMM dengan platform digital yang aman, terpusat, dan efisien. Sistem ini mencakup pengelolaan data keanggotaan secara komprehensif, pelacakan presensi kegiatan, pengarsipan dokumen digital, manajemen inventaris logistik, serta alur persetujuan (approval) berjenjang.
 
-## 📸 Tangkapan Layar (Screenshots)
-
-<details>
-  <summary><b>Klik untuk melihat tampilan aplikasi</b></summary>
-  <br/>
-  
-  > *Tangkapan layar asli dari aplikasi web berjalan.*
-
-  | Dashboard | Manajemen Anggota |
-  | :---: | :---: |
-  | ![Dashboard](./docs/assets/screenshot_dashboard.png) | ![Data Anggota](./docs/assets/screenshot_anggota.png) |
-  
-  | Pengaturan Sistem | Profil Pengguna |
-  | :---: | :---: |
-  | ![Settings](./docs/assets/screenshot_pengaturan.png) | ![Profile](./docs/assets/screenshot_profile.png) |
-  
-  | Sidebar Navigasi | Tampilan Mobile |
-  | :---: | :---: |
-  | ![Sidebar](./docs/assets/screenshot_sidebar.png) | ![Mobile View](./docs/assets/screenshot_responsive_mobile.png) |
-</details>
+Proyek ini telah menyelesaikan fase **Frontend MVP (v1.0.0)** yang merupakan fondasi antarmuka dan *state management* modern sebelum dihubungkan dengan API Backend.
 
 ---
 
-## 🏗 Arsitektur Sistem
+## 📸 Screenshots
 
-Proyek ini menggunakan arsitektur *Client-Server* modern dengan pemisahan tugas yang jelas antara *Frontend* dan *Backend API*.
+Semua tangkapan layar di bawah ini dirender secara langsung dari antarmuka aplikasi.
+
+| Dashboard & Analitik | Manajemen Data Anggota |
+| :---: | :---: |
+| ![Dashboard](./docs/assets/screenshot_dashboard.png) | ![Data Anggota](./docs/assets/screenshot_anggota.png) |
+  
+| Profil Pengguna | Detail Anggota Modal |
+| :---: | :---: |
+| ![Profil](./docs/assets/screenshot_profile.png) | ![Detail Anggota](./docs/assets/screenshot_detail_anggota.png) |
+  
+| Pengaturan Sistem | Dark Mode UI |
+| :---: | :---: |
+| ![Pengaturan](./docs/assets/screenshot_pengaturan.png) | ![Dark Mode](./docs/assets/screenshot_dark_mode.png) |
+  
+| Navigasi Sidebar | Responsif Mobile (Dashboard) |
+| :---: | :---: |
+| ![Sidebar](./docs/assets/screenshot_sidebar.png) | ![Mobile View](./docs/assets/screenshot_responsive_mobile.png) |
+
+> **Catatan**: Halaman Autentikasi tersedia pada file [screenshot_login.png](./docs/assets/screenshot_login.png).
+
+---
+
+## ✨ Feature Overview (Frontend MVP)
+
+Berikut adalah daftar fitur utama yang tersedia dan disimulasikan secara lokal pada rilis *Frontend MVP*:
+
+- **Identity & Access Management (IAM)**: Halaman Login responsif dengan proteksi rute klien berbasis JWT *Mock*.
+- **Dashboard & Analitik**: Panel indikator ringkasan statistik anggota, metrik kegiatan, dan pemberitahuan persetujuan.
+- **Manajemen Data Anggota**: Fungsionalitas CRUD lengkap untuk informasi anggota, didukung tabel dinamis dengan fitur *sorting* dan *filtering*.
+- **Profil & Pengaturan**: Halaman pengaturan preferensi (seperti preferensi Tema dan Visibilitas Notifikasi) serta pratinjau profil *read-only*.
+- **Navigasi Berbasis Role (RBAC)**: Top Navbar dan Sidebar yang secara otomatis menyesuaikan tampilan berdasarkan peran (Role) pengguna aktif.
+- **Design System & Dark Mode**: Skema warna korporat KSR PMI UMM terintegrasi secara semantik dengan utilitas Tailwind CSS, dilengkapi dukungan mode gelap presisten.
+
+---
+
+## 🏗 System Architecture
+
+Proyek ini menggunakan arsitektur *Client-Server* modern yang sepenuhnya memisahkan lapisan penyajian visual (Frontend) dari lapisan pemrosesan bisnis dan manipulasi data (Backend API).
 
 ```mermaid
 graph TD
-    Client[Web Browser Client]
+    Client[Web Browser]
     
-    subgraph Frontend [React Vite SPA]
+    subgraph "Frontend Layer (React SPA)"
         UI[UI Components]
         Store[Zustand Store]
         Query[React Query]
     end
     
-    subgraph Backend [Node.js Express Server]
-        Router[API Routes]
-        Auth[JWT Middleware & RBAC]
-        Controllers[Business Logic]
+    subgraph "Backend Layer (Node.js API)"
+        Router[Express Routes]
+        Auth[Security & RBAC Middleware]
+        Controllers[Business Controllers]
         ORM[Prisma Client]
     end
     
-    DB[(SQLite/PostgreSQL)]
+    DB[(Database)]
     
-    Client -->|HTTP / HTTPS| UI
+    Client -->|HTTPS| UI
     UI --> Store
     UI --> Query
-    Query <-->|REST API| Router
+    Query <-->|RESTful JSON| Router
     Router --> Auth
     Auth --> Controllers
     Controllers <--> ORM
@@ -81,116 +104,116 @@ graph TD
 
 ---
 
-## 🚀 Status & Roadmap Pengembangan
+## 🔐 Role-Based Access Control (RBAC)
 
-- [x] **Fase 1: Frontend MVP & Design System** (Saat ini)
-  - Autentikasi UI, Dashboard UI, Data Anggota CRUD UI, Profil, Dark Mode, RBAC Static Matrix.
-- [ ] **Fase 2: Backend Integration & IAM (Sprint 9)** 
-  - JWT Authentication, Users API, Roles Configuration.
-- [ ] **Fase 3: Core API (Sprint 10)**
-  - Organization Structure API, Activities & Attendance API.
-- [ ] **Fase 4: Financial & Approval API (Sprint 11)**
-  - Inventory, Cash Management, Approval Workflow.
+Aplikasi memiliki tingkat proteksi yang ketat berdasarkan daftar peran (*Role*) berikut:
 
-### Fitur Tersedia di Frontend MVP:
-- **Autentikasi (IAM)**: Halaman Login responsif dengan proteksi rute berbasis JWT (disimulasikan di frontend).
-- **Dashboard & Analitik**: Panel ringkasan data statistik anggota, kegiatan, dan notifikasi persetujuan (dark mode didukung).
-- **Manajemen Data Anggota**: CRUD lengkap (Create, Read, Update, Delete) informasi anggota, form validasi dengan Zod, dan tabel dengan filter dinamis.
-- **Profil & Pengaturan**: Halaman Read-Only profil dan Pengaturan Tema/Notifikasi, terisolasi sesuai hak akses.
-- **Navigasi Dinamis**: Top Navbar & Sidebar Responsif yang otomatis merender menu berdasarkan *Role* pengguna.
-- **Design System & Dark Mode**: Implementasi warna sesuai *brand guidelines* KSR PMI UMM dengan integrasi *Dark Mode* persisten (`Zustand` + `localStorage`).
+1. **Administrator**: Memiliki hak akses penuh (Superuser) untuk memanipulasi keseluruhan data organisasi serta mengelola akun dan konfigurasi sistem.
+2. **Ketua Umum & Wakil**: Pengawas tingkat atas dengan hak pemantauan keseluruhan laporan dan *Approval* akhir.
+3. **Sekretaris**: Pengelola pusat arsip, administrasi dokumen, dan pendataan riwayat presensi.
+4. **Bendahara**: Pemegang otorisasi manajemen keuangan, arus kas, dan *Financial Approval*.
+5. **Pengurus Bidang**: Pengelola spesifik modul Inventaris dan Buku Tamu.
+6. **Pengurus Lapangan**: Penanggung jawab input dan laporan kegiatan lapangan serta manajemen pasien/korban harian.
+7. **Anggota**: Visibilitas baca pada profil individu, histori kegiatan pribadi, dan hierarki Struktur Organisasi.
 
 ---
 
-## 🔐 Sistem Hak Akses (RBAC)
+## 🛠 Tech Stack
 
-Aplikasi ini menggunakan sistem **Role-Based Access Control (RBAC)** ketat untuk menjaga kerahasiaan data organisasi.
+**Frontend (Client)**
+- **Framework**: React 18 (dikompilasi dengan Vite 5)
+- **Bahasa**: TypeScript 5
+- **Styling**: Tailwind CSS 3.4 (dengan integrasi `clsx` & `tailwind-merge`)
+- **State Management**: Zustand (State Global UI) & React Query v5 (Sinkronisasi Server)
+- **Forms**: React Hook Form (terintegrasi dengan validasi skema Zod)
+- **Aset UI**: Lucide React Icons & Radix UI Primitives
 
-**Daftar Role Utama:**
-1. **Administrator**: Akses penuh (CRUD) ke seluruh modul dan Pengaturan (pusat manajemen akun).
-2. **Ketua Umum & Wakil**: Visibilitas penuh terhadap pelaporan, manajemen kegiatan, dan hak *Approval* umum.
-3. **Sekretaris**: Menguasai modul Arsip & Administrasi, Rekap Laporan, dan Absensi Digital.
-4. **Bendahara**: Menguasai modul Keuangan dan *Financial Approval*.
-5. **Pengurus Bidang**: Akses khusus Inventaris, Buku Tamu, dan Data Anggota.
-6. **Pengurus Kegiatan Lapangan**: Manajemen Kegiatan dan Data Pasien/Korban.
-7. **Anggota Organisasi**: Visibilitas terbatas pada Struktur Organisasi, Absensi, dan Profil Pribadi.
-
----
-
-## 🛠 Tech Stack Lengkap
-
-**Frontend (Client):**
-- **Core**: React 18 (Vite), TypeScript 5
-- **Styling**: Tailwind CSS + `clsx` & `tailwind-merge`
-- **State Management**: Zustand (Global UI State), React Query (Async Server State)
-- **Forms & Validation**: React Hook Form + Zod
-- **Icons & UI**: Lucide React, Radix UI
-
-**Backend (API):**
-- **Core**: Node.js, Express.js
-- **Database ORM**: Prisma ORM
-- **Database Engine**: SQLite (Development) -> PostgreSQL (Production)
-- **Security**: bcrypt (Hashing), jsonwebtoken (JWT Auth)
+**Backend (Dalam Pengembangan)**
+- **Framework**: Node.js dengan Express.js
+- **ORM & Database**: Prisma ORM, SQLite untuk *development*, PostgreSQL disarankan untuk *production*
+- **Keamanan**: `bcrypt` untuk pelindung *password*, JSON Web Tokens (`jsonwebtoken`) untuk sesi.
 
 ---
 
-## 📁 Struktur Direktori
+## 📁 Folder Structure
 
 ```text
 sim-ksr-pmi-umm/
-├── .github/                  # Konfigurasi GitHub Actions CI & Issue Templates
-├── docs/                     # Dokumentasi teknis dan laporan QA proyek
-├── server/                   # Backend API Node.js/Express
-│   ├── prisma/               # Skema Database & Seeders
+├── .github/                  # Konfigurasi Continuous Integration (CI) dan Issue Templates
+├── docs/                     # Dokumentasi sistem, rilis, arsitektur, dan screenshot assets
+├── server/                   # Backend Node.js Environment
+│   ├── prisma/               # File skema database (.prisma) dan skrip Seeder
 │   └── src/
-│       ├── controllers/      # Logika bisnis API
-│       ├── middlewares/      # Interceptor (Auth, RBAC, Error Handler)
-│       └── routes/           # Definisi endpoint API
-└── src/                      # Frontend React (Vite) Aplikasi Utama
-    ├── components/           # Komponen UI Reusable (Cards, UI, Layouts)
-    ├── constants/            # Variabel konstan (RBAC Matrix, Role config)
-    ├── pages/                # Komponen Halaman (Dashboard, Login, dll)
-    └── store/                # Konfigurasi Global State (Zustand)
+│       ├── controllers/      # Modul logika aplikasi
+│       ├── middlewares/      # Penengah otorisasi akses (RBAC) dan Error Handler
+│       └── routes/           # Penentuan struktur endpoint API
+└── src/                      # Frontend React Environment
+    ├── components/           # Kumpulan UI (Buttons, Cards, Modals) & Layout Utama
+    ├── constants/            # Matriks otorisasi pengguna & Role configuration
+    ├── pages/                # Halaman aplikasi berdasarkan router (Dashboard, Auth, Anggota)
+    ├── store/                # Konfigurasi manajemen status (Zustand & Slices)
+    └── utils/                # Fungsi bantu (Instansi Axios, kalkulator tanggal, dll.)
 ```
 
 ---
 
-## 📦 Panduan Instalasi (Development)
+## 📦 Installation & Development
 
-**Prasyarat:** Node.js (v18+) dan npm/yarn terpasang di sistem.
+Pastikan sistem Anda telah memiliki **Node.js (versi 18 ke atas)** beserta instalasi NPM atau Yarn.
 
-1. **Kloning Repositori:**
-   ```bash
-   git clone https://github.com/Kira-IDN/sim-ksr-pmi-umm.git
-   cd sim-ksr-pmi-umm
-   ```
+### 1. Kloning Repositori
 
-2. **Setup Frontend:**
-   ```bash
-   npm install
-   npm run dev
-   ```
-   *Frontend berjalan di `http://localhost:5173`.*
+```bash
+git clone https://github.com/Kira-IDN/sim-ksr-pmi-umm.git
+cd sim-ksr-pmi-umm
+```
 
-3. **Setup Backend (API Server):**
-   ```bash
-   cd server
-   npm install
-   npx prisma db push
-   npx ts-node prisma/seed.ts   # Memasukkan data dummy & akun Administrator
-   npm run dev
-   ```
-   *Backend berjalan di `http://localhost:3000`.*
+### 2. Konfigurasi Frontend (Klien)
 
-> **Catatan Login:** Gunakan akun `ADMIN001` dengan password `admin123` untuk login sebagai Administrator.
+Jalankan perintah ini pada *root directory* untuk membangun Frontend:
+
+```bash
+npm install
+npm run dev
+```
+
+Klien akan dilayani pada alamat lokal `http://localhost:5173`.
+
+### 3. Konfigurasi Backend (Server)
+
+Buka sesi terminal baru dan navigasi ke ruang kerja peladen:
+
+```bash
+cd server
+npm install
+npx prisma db push
+npx ts-node prisma/seed.ts
+npm run dev
+```
+
+*Backend API* akan mengamati (listen) *port* 3000 pada mesin Anda (`http://localhost:3000`).
+> **Akses Kredensial Pengujian:** Anda dapat mengakses aplikasi dengan kredensial Administrator menggunakan Nama Induk Anggota (NIA): `ADMIN001` dengan password `admin123`.
 
 ---
 
-## 🤝 Kontribusi
+## 🛤 Backend Roadmap
 
-Kami menyambut baik segala bentuk kontribusi. Silakan baca [Panduan Kontribusi](CONTRIBUTING.md) untuk memahami *workflow* pembuatan *branch*, penulisan *commit message*, dan prosedur *Pull Request*.
+Fokus pengembangan berlanjut pada pengkabelan Frontend ke *Production API* yang direpresentasikan oleh Roadmap berikut:
 
-## 📄 Lisensi
+1. **Integrasi IAM (Sprint 9)**: Penyediaan endpoint otentikasi login, JWT, manajemen otorisasi peran (RBAC), serta modifikasi basis profil.
+2. **Core System (Sprint 10)**: Dukungan *Restful* untuk fitur CRUD Data Anggota, Struktur Organisasi, dan Manajemen Kegiatan Harian.
+3. **Persuratan & Approval (Sprint 11)**: Pembangunan alur persetujuan berbasis *state-machine* pada modul Administrasi dan Keuangan.
+4. **Logistik (Sprint 12)**: Otomasi kalkulasi dan riwayat inventaris.
 
-Hak Cipta © 2026 KSR PMI UMM.
-Dikembangkan secara eksklusif untuk kebutuhan internal KSR PMI UMM. Hak cipta dilindungi.
+---
+
+## 🤝 Contribution
+
+Repositori ini mengikuti standar *Semantic Versioning* dan *Conventional Commits*. Silakan periksa file [CONTRIBUTING.md](./CONTRIBUTING.md) kami yang menjabarkan tentang konvensi pembuatan *Branch*, penulisan *Commit*, tata cara laporan masalah (Issues), hingga pembukaan *Pull Requests* (PR).
+
+---
+
+## 📄 License
+
+Sistem ini dikembangkan secara spesifik untuk lingkungan internal organisasi KSR PMI Unit Universitas Muhammadiyah Malang. 
+Hak Cipta © 2026 **KSR PMI UMM**. Hak cipta dilindungi undang-undang. Dilarang melakukan komersialisasi atau redistribusi perangkat lunak tanpa persetujuan tertulis.
