@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { Sidebar } from '../sidebar/Sidebar';
 import { TopNavbar } from '../navbar/TopNavbar';
@@ -28,6 +29,7 @@ const getPageTitle = (pathname: string) => {
 export const AppLayout = () => {
   const { isAuthenticated, user } = useAuthStore();
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -41,11 +43,11 @@ export const AppLayout = () => {
   const title = getPageTitle(location.pathname);
 
   return (
-    <div className="flex h-screen bg-ksr-background font-sans">
-      <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <TopNavbar title={title} />
-        <main className="flex-1 overflow-y-auto pt-12 px-8 pb-8 custom-scrollbar">
+    <div className="flex h-screen bg-ksr-background font-sans overflow-hidden">
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <TopNavbar title={title} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+        <main className="flex-1 overflow-y-auto pt-8 px-8 pb-8 custom-scrollbar">
           <Outlet />
         </main>
       </div>

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface TopNavbarProps {
   title?: string;
+  toggleSidebar: () => void;
 }
 
 const INITIAL_MOCK_NOTIFICATIONS = [
@@ -36,7 +37,7 @@ const INITIAL_MOCK_NOTIFICATIONS = [
   }
 ];
 
-export const TopNavbar = ({ title = 'Dashboard' }: TopNavbarProps) => {
+export const TopNavbar = ({ title = 'Dashboard', toggleSidebar }: TopNavbarProps) => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -77,7 +78,10 @@ export const TopNavbar = ({ title = 'Dashboard' }: TopNavbarProps) => {
   return (
     <header className="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-8 sticky top-0 z-10">
       <div className="flex items-center gap-4">
-        <button className="p-2 hover:bg-gray-50 rounded-lg text-gray-500 md:hidden">
+        <button 
+          onClick={toggleSidebar}
+          className="p-2 hover:bg-gray-50 rounded-lg text-gray-500 dark:hover:bg-slate-800"
+        >
           <Menu className="w-5 h-5" />
         </button>
         <div>
