@@ -215,13 +215,20 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
               <select 
                 {...register('position')} 
                 disabled={!selectedDivision}
-                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-ksr-primary outline-none disabled:opacity-50"
+                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-ksr-primary outline-none disabled:bg-gray-100 disabled:text-gray-500"
               >
-                <option value="" disabled>Pilih Jabatan...</option>
+                <option value="" disabled>
+                  {selectedDivision ? 'Pilih Jabatan...' : 'Silakan pilih Bidang terlebih dahulu'}
+                </option>
                 {positionOptions.map(pos => (
                   <option key={pos} value={pos}>{pos}</option>
                 ))}
               </select>
+              {!selectedDivision && (
+                <p className="text-gray-500 text-xs mt-1 italic">
+                  *Pilih Bidang terlebih dahulu untuk menampilkan daftar Jabatan.
+                </p>
+              )}
               {errors.position && <p className="text-red-500 text-xs mt-1">{errors.position.message}</p>}
             </div>
           </div>
