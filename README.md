@@ -40,17 +40,17 @@ Semua tangkapan layar di bawah ini dirender secara langsung dari antarmuka aplik
 | :---: | :---: |
 | ![Dashboard](./docs/assets/screenshot_dashboard.png) | ![Data Anggota](./docs/assets/screenshot_anggota.png) |
   
+| Sidebar (Desktop Terbuka) | Sidebar (Desktop Tertutup) |
+| :---: | :---: |
+| ![Sidebar Open](./docs/assets/screenshot_sidebar_open.png) | ![Sidebar Closed](./docs/assets/screenshot_sidebar_closed.png) |
+
 | Profil Pengguna | Detail Anggota Modal |
 | :---: | :---: |
 | ![Profil](./docs/assets/screenshot_profile.png) | ![Detail Anggota](./docs/assets/screenshot_detail_anggota.png) |
   
-| Pengaturan Sistem | Dark Mode UI |
+| Pengaturan Sistem | Responsif Mobile (Drawer) |
 | :---: | :---: |
-| ![Pengaturan](./docs/assets/screenshot_pengaturan.png) | ![Dark Mode](./docs/assets/screenshot_dark_mode.png) |
-  
-| Navigasi Sidebar | Responsif Mobile (Dashboard) |
-| :---: | :---: |
-| ![Sidebar](./docs/assets/screenshot_sidebar.png) | ![Mobile View](./docs/assets/screenshot_responsive_mobile.png) |
+| ![Pengaturan](./docs/assets/screenshot_pengaturan.png) | ![Mobile View](./docs/assets/screenshot_responsive_mobile.png) |
 
 > **Catatan**: Halaman Autentikasi tersedia pada file [screenshot_login.png](./docs/assets/screenshot_login.png).
 
@@ -64,6 +64,7 @@ Berikut adalah daftar fitur utama yang tersedia dan disimulasikan secara lokal p
 - **Dashboard & Analitik**: Panel indikator ringkasan statistik anggota, metrik kegiatan, dan pemberitahuan persetujuan.
 - **Manajemen Data Anggota**: Fungsionalitas CRUD lengkap untuk informasi anggota, didukung tabel dinamis dengan fitur *sorting* dan *filtering*.
 - **Profil & Pengaturan**: Halaman pengaturan preferensi (seperti preferensi Tema dan Visibilitas Notifikasi) serta pratinjau profil *read-only*.
+- **Collapsible Responsive Sidebar**: Tata letak modern dengan Sidebar yang dapat diciutkan (ditekan melalui *Hamburger Menu*) untuk memaksimalkan area konten, didukung animasi transisi *smooth*. Pada layar perangkat *Mobile*, navigasi otomatis berubah menjadi *Drawer Overlay*.
 - **Navigasi Berbasis Role (RBAC)**: Top Navbar dan Sidebar yang secara otomatis menyesuaikan tampilan berdasarkan peran (Role) pengguna aktif.
 - **Design System & Dark Mode**: Skema warna korporat KSR PMI UMM terintegrasi secara semantik dengan utilitas Tailwind CSS, dilengkapi dukungan mode gelap presisten.
 
