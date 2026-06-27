@@ -55,9 +55,10 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
 
   const schema = useMemo(() => getValidationSchema(isEditing), [isEditing]);
 
-  const { register, handleSubmit, formState: { errors, isValid }, reset, control, setValue } = useForm<any>({
+  const { register, handleSubmit, formState: { errors }, reset, control, setValue } = useForm<any>({
     resolver: zodResolver(schema),
-    mode: 'onTouched',
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
     defaultValues: {
       loginId: '',
       nia: '',
@@ -166,7 +167,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
         <form onSubmit={handleSubmit((d) => mutation.mutate(d))} className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">ID Login *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1">ID Login</label>
               <input 
                 id="loginIdInput"
                 {...register('loginId')} 
@@ -176,7 +177,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
               {errors.loginId && <p className="text-red-500 text-xs mt-1">{errors.loginId.message as string}</p>}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">NIA *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1">NIA</label>
               <input 
                 {...register('nia')} 
                 className={getInputClass(!!errors.nia)}
@@ -188,7 +189,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="col-span-2">
-              <label className="block text-sm font-bold text-gray-700 mb-1">Nama Lengkap *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1">Nama Lengkap</label>
               <input 
                 {...register('name')} 
                 className={getInputClass(!!errors.name)}
@@ -200,7 +201,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Bidang *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1">Bidang</label>
               <select 
                 {...register('division', {
                   onChange: () => {
@@ -222,7 +223,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
               {errors.division && <p className="text-red-500 text-xs mt-1">{errors.division.message as string}</p>}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Jabatan *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1">Jabatan</label>
               <select 
                 {...register('position')} 
                 disabled={!selectedDivision}
@@ -245,7 +246,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">
-                {isEditing ? 'Password Baru (Opsional)' : 'Password *'}
+                {isEditing ? 'Password Baru (Opsional)' : 'Password'}
               </label>
               <div className="relative">
                 <input 
@@ -276,7 +277,7 @@ export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
             </button>
             <button 
               type="submit" 
-              disabled={!isValid || mutation.isPending}
+              disabled={mutation.isPending}
               className="px-6 py-2 rounded-xl bg-ksr-primary text-white font-bold hover:bg-red-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {mutation.isPending ? 'Menyimpan...' : 'Simpan'}
