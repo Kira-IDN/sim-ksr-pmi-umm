@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://via.placeholder.com/800x200/B71C1C/FFFFFF?text=SIM+KSR+PMI+UMM" alt="SIM KSR PMI UMM Banner" />
+  <img src="./docs/assets/logo.png" alt="SIM KSR PMI UMM Logo" width="200" />
   
   <br />
   <br />
@@ -29,15 +29,19 @@ Proyek ini dibangun untuk menggantikan sistem administrasi manual KSR PMI UMM de
   <summary><b>Klik untuk melihat tampilan aplikasi</b></summary>
   <br/>
   
-  > *Catatan: Tambahkan screenshot aplikasi yang sebenarnya di folder `docs/assets/` lalu ganti URL placeholder di bawah ini.*
+  > *Tangkapan layar asli dari aplikasi web berjalan.*
 
   | Dashboard | Manajemen Anggota |
   | :---: | :---: |
-  | ![Dashboard](https://via.placeholder.com/400x250/F3F4F6/9CA3AF?text=Dashboard+View) | ![Data Anggota](https://via.placeholder.com/400x250/F3F4F6/9CA3AF?text=Data+Anggota+View) |
+  | ![Dashboard](./docs/assets/screenshot_dashboard.png) | ![Data Anggota](./docs/assets/screenshot_anggota.png) |
   
-  | Dark Mode | Form Pengaturan |
+  | Pengaturan Sistem | Profil Pengguna |
   | :---: | :---: |
-  | ![Dark Mode](https://via.placeholder.com/400x250/1F2937/9CA3AF?text=Dark+Mode+View) | ![Settings](https://via.placeholder.com/400x250/F3F4F6/9CA3AF?text=Settings+Form) |
+  | ![Settings](./docs/assets/screenshot_pengaturan.png) | ![Profile](./docs/assets/screenshot_profile.png) |
+  
+  | Sidebar Navigasi | Tampilan Mobile |
+  | :---: | :---: |
+  | ![Sidebar](./docs/assets/screenshot_sidebar.png) | ![Mobile View](./docs/assets/screenshot_responsive_mobile.png) |
 </details>
 
 ---
@@ -178,7 +182,7 @@ sim-ksr-pmi-umm/
    ```
    *Backend berjalan di `http://localhost:3000`.*
 
-> **Catatan Login:** Gunakan akun `ADMIN001` dengan password `password123` untuk login sebagai Administrator.
+> **Catatan Login:** Gunakan akun `ADMIN001` dengan password `admin123` untuk login sebagai Administrator.
 
 ---
 
